@@ -1,9 +1,11 @@
 {
     "app-id": "org.gnome.Fractal",
     "runtime": "org.gnome.Platform",
-    "runtime-version": "3.30",
+    "runtime-version": "3.32",
     "sdk": "org.gnome.Sdk",
-    "sdk-extensions": ["org.freedesktop.Sdk.Extension.rust-stable"],
+    "sdk-extensions": [
+        "org.freedesktop.Sdk.Extension.rust-stable"
+    ],
     "command": "fractal",
     "finish-args": [
         "--filesystem=xdg-run/dconf",
@@ -15,6 +17,7 @@
         "--socket=x11",
         "--socket=wayland",
         "--socket=pulseaudio",
+        "--device=dri",
         "--talk-name=org.freedesktop.secrets",
         "--talk-name=org.freedesktop.Notifications",
         "--filesystem=home"
@@ -31,17 +34,17 @@
             "buildsystem" : "meson",
             "config-opts" : [
                 "-Dprofiling=false",
-                "-Dintrospection=true",
+                "-Dintrospection=enabled",
                 "-Dgtk_doc=false",
                 "-Dtests=false",
                 "-Dexamples=false",
                 "-Dvapi=false",
-                "-Dglade_catalog=false"
+                "-Dglade_catalog=disabled"
             ],
             "sources" : [
                 {
                     "type" : "git",
-                    "url" : "https://source.puri.sm/Librem5/libhandy"
+                    "url" : "https://source.puri.sm/Librem5/libhandy.git"
                 }
             ]
         },
@@ -59,7 +62,29 @@
             ]
         },
         {
-           "name": "Fractal",
+            "name": "gspell",
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/GNOME/gspell.git"
+                }
+            ]
+        },
+        {
+            "name" : "gst-editing-services",
+            "config-opts" : [
+                "--disable-Werror"
+            ],
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.freedesktop.org/gstreamer/gst-editing-services.git",
+                    "tag" : "1.14.4"
+                }
+            ]
+        },
+        {
+           "name": "fractal",
            "buildsystem": "meson",
             "config-opts" : [
                 "-Dprofile=default"
@@ -67,8 +92,8 @@
            "sources": [
                {
                    "type": "archive",
-                   "url": "https://gitlab.gnome.org/GNOME/fractal/uploads/ad6a483327c3e9ef5bb926b89fb26e2b/fractal-4.0.0.tar.xz",
-                   "sha256": "10b1ae500f46485d9b8959ab81a40e62109ab2ea48126b2cca2390479bf318a0"
+                   "url": "https://gitlab.gnome.org/GNOME/fractal/uploads/3645297fb7f4d82aebb8201912797f5c/fractal-4.1.0.tar.xz",
+                   "sha256": "1cc985507fafd45513e9be622f7314a4af0cbaeb2394492ada8e63fee4353afc"
                }
            ]
         }
